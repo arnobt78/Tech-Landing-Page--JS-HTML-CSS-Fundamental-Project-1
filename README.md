@@ -1,12 +1,6 @@
-# Modern Tech Landing Page – HTML, CSS, JavaScript Template
+# Modern Tech Landing Page – JavaScript, HTML, CSS Frontend Fundamentals Project 1
 
-![HTML CSS Webpage I](https://github.com/user-attachments/assets/25acc0c2-b80d-4510-98a5-012c7130af2b) ![HTML CSS Webpage II](https://github.com/user-attachments/assets/bf19dc13-96f7-4b88-a374-a25df4e16660) ![HTML CSS Webpage III](https://github.com/user-attachments/assets/828762a4-615a-4842-b339-bc30a82f21b8)
-
----
-
-## Project Overview
-
-This project is a modern, responsive website template built with HTML, CSS, and JavaScript. It demonstrates core web development fundamentals and is suitable as a starter template for personal, portfolio, or small business websites.
+A modern, responsive website template built with HTML, CSS, and JavaScript. It demonstrates core web development fundamentals and is suitable as a starter template for personal, portfolio, or small business websites.
 
 - **Live Demo:** [https://modern-tech-landing-page.netlify.app/](https://modern-tech-landing-page.netlify.app/)
 
@@ -60,7 +54,7 @@ Key features include:
   - Flexbox & CSS Grid
   - Media Queries for responsiveness
   - Custom CSS classes for modularity
-- **JavaScript (Vanilla)**: 
+- **JavaScript (Vanilla)**:
   - Mobile menu toggle for navigation
   - Simple DOM manipulation
 - **FontAwesome**: For vector icons and social media links.
@@ -86,9 +80,11 @@ Javascript-HTML-CSS--Fundamental-Project-1/
 ## How to Run
 
 1. **Clone or Download the Repository**
+
    ```
    git clone https://github.com/arnobt78/Javascript-HTML-CSS--Fundamental-Project-1.git
    ```
+
    Or download and unzip manually.
 
 2. **Open the Project**
@@ -130,7 +126,7 @@ Javascript-HTML-CSS--Fundamental-Project-1/
 
 ## Customization
 
-- **Images**: Replace or add to `/images/` for your own branding.
+- **Images**: Replace or add to `/public/images/` for your own branding.
 - **Colors & Fonts**: Edit `styles.css` to match your preferred color scheme and typography.
 - **Content**: Update text in `index.html` and `tech.html` for your own info.
 - **Links**: Adjust navigation and social media links in the HTML files.
