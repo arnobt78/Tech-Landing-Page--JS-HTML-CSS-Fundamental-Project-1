@@ -201,7 +201,7 @@ function renderHome() {
   `;
 }
 
-/** Tech route `/tech`: full-bleed hero, “Under the hood” split, then two full-width banners (shared assets with home). */
+/** Tech route `/tech`: full-bleed hero, “Under the hood” (image | copy), mirrored stack (copy | image), one footer banner. */
 function renderTech() {
   return `
     <div class="main hero-section hero-fullbleed">
@@ -233,18 +233,28 @@ function renderTech() {
         </div>
       </div>
     </section>
-    <div class="tech-prefooter-banners" aria-hidden="true">
-      <div class="how__banner" data-reveal data-reveal-from="top" data-reveal-delay="0" role="presentation">
-        <img src="${images.home.howBanner}" alt="" width="1400" height="600" loading="lazy" />
+    <section class="section tech-detail tech-detail--mirror" aria-labelledby="tech-stack-mirror-heading">
+      <div class="max-w-9xl inner-padding tech-detail__split">
+        <div class="tech-detail__copy">
+          <h2 id="tech-stack-mirror-heading" class="section__title" data-reveal data-reveal-from="left" data-reveal-delay="0">How it runs in the browser</h2>
+          <ul class="tech-list">
+            <li data-reveal data-reveal-from="left" data-reveal-delay="0"><strong>HTML</strong> — one shell page; routes swap content into <code>&lt;main&gt;</code>.</li>
+            <li data-reveal data-reveal-from="left" data-reveal-delay="50"><strong>CSS</strong> — custom properties, fluid type, and motion with a reduced-motion fallback.</li>
+            <li data-reveal data-reveal-from="left" data-reveal-delay="100"><strong>JavaScript</strong> — History API, link interception, Intersection Observer, requestAnimationFrame.</li>
+          </ul>
+        </div>
+        <div class="tech-detail__visual" data-reveal data-reveal-from="right" data-reveal-delay="40">
+          <img src="${images.tech.stackMirror}" alt="Team collaborating with laptops" width="1200" height="700" loading="lazy" />
+        </div>
       </div>
-      <div class="how__banner" data-reveal data-reveal-from="bottom" data-reveal-delay="40" role="presentation">
-        <img src="${images.home.showcase}" alt="" width="1200" height="750" loading="lazy" />
-      </div>
-    </div>
+    </section>
+    <section class="how__banner" aria-hidden="true">
+      <img src="${images.tech.footerBanner}" alt="" width="1920" height="800" loading="lazy" />
+    </section>
   `;
 }
 
-/** Products route `/products`: plans grid with CTA links to `/sign-up` and a closing full-width banner image. */
+/** Products route `/products`: plans grid, stack explainer (copy | image), then full-width banner. */
 function renderProducts() {
   return `
     <div class="main hero-section hero-fullbleed">
@@ -289,6 +299,22 @@ function renderProducts() {
               <a href="/sign-up" class="button product-card__btn cta-shine-button btn-ripple">Contact</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+    <section class="section products-stack-section tech-detail tech-detail--mirror" aria-labelledby="products-stack-heading">
+      <div class="max-w-9xl inner-padding tech-detail__split">
+        <div class="tech-detail__copy">
+          <h2 id="products-stack-heading" class="section__title" data-reveal data-reveal-from="left" data-reveal-delay="0">How this page is built</h2>
+          <p class="products-stack-lede" data-reveal data-reveal-from="left" data-reveal-delay="30">The same fundamentals power both marketing and product surfaces—no framework required for this demo.</p>
+          <ul class="tech-list">
+            <li data-reveal data-reveal-from="left" data-reveal-delay="0"><strong>HTML</strong> — one shell page; routes swap content into <code>&lt;main&gt;</code>.</li>
+            <li data-reveal data-reveal-from="left" data-reveal-delay="50"><strong>CSS</strong> — custom properties, fluid type, and motion with a reduced-motion fallback.</li>
+            <li data-reveal data-reveal-from="left" data-reveal-delay="100"><strong>JavaScript</strong> — History API, link interception, Intersection Observer, requestAnimationFrame.</li>
+          </ul>
+        </div>
+        <div class="tech-detail__visual" data-reveal data-reveal-from="right" data-reveal-delay="40">
+          <img src="${images.products.stackMirror}" alt="Developers working together" width="1200" height="700" loading="lazy" />
         </div>
       </div>
     </section>

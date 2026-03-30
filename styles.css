@@ -1027,18 +1027,6 @@ h3,
   object-fit: cover;
 }
 
-.tech-prefooter-banners {
-  width: 100%;
-}
-
-.tech-prefooter-banners .how__banner:first-child {
-  margin-bottom: 0;
-}
-
-.tech-prefooter-banners .how__banner:last-child {
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
 .how__columns {
   display: grid;
   gap: 2rem;
@@ -1225,6 +1213,19 @@ h3,
 
 .tech-detail__copy .section__title {
   margin-bottom: 1.25rem;
+}
+
+/* Second tech split + products explainer: copy column first in DOM = left on desktop (opposite of default Under the hood order). */
+.tech-detail--mirror {
+  background: var(--color-bg-elevated);
+}
+
+.products-stack-lede {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 52ch;
+  margin: 0 0 1.25rem;
 }
 
 .product-card__visual {
