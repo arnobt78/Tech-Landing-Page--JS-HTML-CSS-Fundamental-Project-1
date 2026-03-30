@@ -90,6 +90,39 @@ export function initParallax(root) {
   onScroll();
 }
 
+/** @type {IntersectionObserver | null} */
+let footerRevealObserver = null;
+
+/**
+ * Footer is outside #app — observe once for scroll-in class.
+ */
+export function initFooterRevealOnce() {
+  if (footerRevealObserver) return;
+  const footer = document.querySelector(".footer-reveal");
+  if (!footer) return;
+
+  const prefersReduced =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReduced) {
+    footer.classList.add("is-visible");
+    return;
+  }
+
+  footerRevealObserver = new IntersectionObserver(
+    (entries, obs) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target);
+      }
+    },
+    { root: null, rootMargin: "0px 0px -5% 0px", threshold: 0.08 }
+  );
+  footerRevealObserver.observe(footer);
+}
+
 /**
  * @param {Element | Document} [root]
  */

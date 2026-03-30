@@ -1,5 +1,6 @@
 import { initRouter, navigate } from "./router.js";
-import { setupScrollEffects } from "./scroll-effects.js";
+import { initFooterRevealOnce, setupScrollEffects } from "./scroll-effects.js";
+import { initRipple } from "./ripple.js";
 
 function initMobileMenu() {
   const menu = document.querySelector("#mobile-menu");
@@ -64,6 +65,8 @@ function boot() {
   initMobileMenu();
   initNavbarScroll();
   bindDelegatedHandlers();
+  initFooterRevealOnce();
+  initRipple();
 
   const outlet = document.querySelector("#app");
   initRouter(outlet);
@@ -82,12 +85,14 @@ function boot() {
     (event) => {
       const t = event.target;
       if (!(t instanceof Element)) return;
-      const btn = t.closest(".main__btn");
-      if (!btn) return;
-      const a = btn.querySelector("a[href^='/']");
+      const wrap = t.closest(".main__btn");
+      if (!wrap) return;
+      const a =
+        wrap instanceof HTMLAnchorElement
+          ? wrap
+          : wrap.querySelector("a[href^='/']");
       if (!a || !(a instanceof HTMLAnchorElement)) return;
-      const inner = t.closest("a");
-      if (inner === a) return;
+      if (t.closest("a") === a) return;
       event.preventDefault();
       navigate(outlet, new URL(a.href).pathname);
       document.dispatchEvent(new CustomEvent("routechange"));

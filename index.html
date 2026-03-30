@@ -8,17 +8,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Beginner-friendly landing page: HTML, CSS, and vanilla JavaScript with client-side routing, scroll motion, and Vercel-ready static build."
+      content="TechNEXT — responsive tech landing page showcase: vanilla HTML, CSS, and JavaScript with client-side routing, scroll motion, and a Vercel-ready static build. Frontend fundamentals project by Arnob Mahmud."
     />
-    <meta property="og:title" content="TechNEXT — Modern web fundamentals" />
+    <meta
+      name="keywords"
+      content="TechNEXT, tech landing page, HTML, CSS, JavaScript, responsive design, vanilla JS, SPA routing, frontend fundamentals, web development, portfolio, Vercel, static site, Arnob Mahmud"
+    />
+    <meta name="author" content="Arnob Mahmud" />
+    <meta name="contact" content="contact@arnobmahmud.com" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0c0c0f" />
+    <link rel="author" href="https://www.arnobmahmud.com" />
+    <link rel="canonical" href="https://next-tech-ui.vercel.app/" />
+    <meta property="og:title" content="TechNEXT — Tech Landing Page | HTML, CSS &amp; JavaScript Fundamentals Showcase" />
     <meta
       property="og:description"
-      content="Learn layout, motion, and SPA-style routing without a framework."
+      content="Modern responsive landing page: vanilla HTML, CSS, and JavaScript with routing, motion, and deploy-ready build. Live demo of frontend fundamentals."
     />
     <meta property="og:type" content="website" />
-    <link rel="canonical" href="/" />
-    <title>TechNEXT — Learn modern web basics</title>
+    <meta property="og:url" content="https://next-tech-ui.vercel.app/" />
+    <meta property="og:site_name" content="TechNEXT" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:image"
+      content="https://next-tech-ui.vercel.app/public/favicon.svg"
+    />
+    <meta property="og:image:alt" content="TechNEXT site icon" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="TechNEXT — Tech Landing Page | HTML, CSS &amp; JavaScript Fundamentals"
+    />
+    <meta
+      name="twitter:description"
+      content="Responsive tech landing page built with vanilla HTML, CSS, and JavaScript. Live demo &amp; source."
+    />
+    <meta
+      name="twitter:image"
+      content="https://next-tech-ui.vercel.app/public/favicon.svg"
+    />
+    <title>TechNEXT — Tech Landing Page | HTML, CSS &amp; JavaScript Fundamentals Showcase</title>
     <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/public/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
@@ -32,11 +63,33 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "TechNEXT — Tech Landing Page",
+        "alternateName": "Tech Landing Page – JavaScript, HTML, CSS Frontend Fundamentals Project 1",
+        "url": "https://next-tech-ui.vercel.app/",
+        "description": "Responsive tech landing page showcase with vanilla HTML, CSS, and JavaScript: SPA-style routing, animations, and Vercel-ready static build.",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Arnob Mahmud",
+          "url": "https://www.arnobmahmud.com",
+          "email": "contact@arnobmahmud.com"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Arnob Mahmud",
+          "url": "https://www.arnobmahmud.com"
+        }
+      }
+    </script>
   </head>
 
   <body>
     <a class="skip-link" href="#app">Skip to main content</a>
-    <nav class="navbar" aria-label="Primary">
+    <nav class="navbar navbar-shell" aria-label="Primary">
       <div class="navbar__container max-w-9xl inner-padding">
         <a href="/" id="navbar__logo"><i class="fas fa-gem" aria-hidden="true"></i>TechNEXT</a>
         <div class="navbar__toggle" id="mobile-menu" role="button" tabindex="0" aria-label="Open menu">
@@ -61,7 +114,7 @@
 
     <main id="app" class="layout-main" aria-live="polite"></main>
 
-    <div class="footer__container">
+    <div class="footer__container footer-reveal">
       <div class="footer__links max-w-9xl inner-padding">
         <div class="footer__link--wrapper">
           <div class="footer__link--items">
@@ -152,6 +205,13 @@
           </div>
         </div>
       </section>
+      <div class="footer__credit max-w-9xl inner-padding">
+        <p class="unsplash-credit">
+          Photos from
+          <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>
+          (direct image URLs; no API key).
+        </p>
+      </div>
     </div>
     <script type="module" src="js/main.js"></script>
   </body>

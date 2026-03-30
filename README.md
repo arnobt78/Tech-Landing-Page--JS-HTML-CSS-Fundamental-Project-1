@@ -1,8 +1,8 @@
-# Modern Tech Landing Page – JavaScript, HTML, CSS Frontend Fundamentals Project 1
+# Tech Landing Page – JavaScript, HTML, CSS Frontend Fundamentals Project 1
 
 A modern, responsive website template built with HTML, CSS, and JavaScript. It demonstrates core web development fundamentals and is suitable as a starter template for personal, portfolio, or small business websites.
 
-- **Live Demo:** [https://modern-tech-landing-page.netlify.app/](https://modern-tech-landing-page.netlify.app/)
+- **Live Demo:** [https://next-tech-ui.vercel.app/](https://next-tech-ui.vercel.app/)
 
 ---
 
