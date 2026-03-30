@@ -1,14 +1,18 @@
 /**
- * Unsplash: no API key needed for static photo URLs.
- * Use images.unsplash.com/photo-… with fit/crop params (hotlinking is fine for demos;
- * follow Unsplash license: https://unsplash.com/license — attribute when possible).
+ * Central place for remote imagery used in `router.js` templates.
  *
- * For search/random by program, use the Unsplash API (requires an access key).
+ * Unsplash: no API key is needed for **direct image URLs** (what we use here). The browser simply requests
+ * a JPEG/WebP like any other static asset. For programmatic search or uploads you would use the Unsplash API
+ * with a server-side key instead—this project stays static for teaching clarity.
+ *
+ * License: https://unsplash.com/license — attribute photographers in production sites when required.
  */
 
+/** JPEG/WebP quality query param (balance file size vs clarity for hero photography). */
 const Q = 82;
 
 /**
+ * Builds a stable, sized `images.unsplash.com` URL. Keeping dimensions here avoids huge originals on mobile.
  * @param {string} photoPath e.g. "photo-1517694712202-14dd9538aa97"
  * @param {{ w?: number; h?: number }} [opts]
  */
@@ -19,7 +23,9 @@ export function unsplashPhoto(photoPath, opts = {}) {
   return `https://images.unsplash.com/${photoPath}?auto=format&fit=crop&w=${w}${hPart}&q=${Q}`;
 }
 
-/** Curated IDs (stable, high-quality tech / workspace shots). */
+/**
+ * Curated photo IDs grouped by route/section. To swap art for a lesson, change paths or `opts` only here.
+ */
 export const images = {
   home: {
     hero: unsplashPhoto("photo-1517694712202-14dd9538aa97", { w: 900, h: 700 }),

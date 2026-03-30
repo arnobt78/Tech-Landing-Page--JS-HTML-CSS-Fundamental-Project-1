@@ -1,3 +1,8 @@
+/**
+ * Scroll-driven presentation helpers: reveal-on-scroll (Intersection Observer) and optional hero parallax.
+ * Scoped observers are recreated whenever `#app` innerHTML changes—see `setupScrollEffects` from `main.js`.
+ */
+
 /** @type {IntersectionObserver | null} */
 let revealObserver = null;
 
@@ -8,6 +13,7 @@ let parallaxFrame = null;
 let parallaxBinding = null;
 
 /**
+ * Reads `data-reveal-delay` (milliseconds) into inline `transition-delay` so staggered animations stay declarative in HTML.
  * @param {Element} root
  */
 function applyRevealDelays(root) {
@@ -20,6 +26,8 @@ function applyRevealDelays(root) {
 }
 
 /**
+ * Elements with `[data-reveal]` start hidden (see CSS); when they intersect the viewport they get `.is-visible`.
+ * Respects `prefers-reduced-motion`: we skip animation and show content immediately for accessibility.
  * @param {Element | Document} root
  */
 export function initReveal(root) {
@@ -37,6 +45,8 @@ export function initReveal(root) {
 
   applyRevealDelays(root);
 
+  // rootMargin bottom -8% triggers slightly before the element hits the bottom edge (feels less “late”).
+  // threshold 0.12 avoids firing when only a sliver is visible.
   revealObserver = new IntersectionObserver(
     (entries, obs) => {
       for (const entry of entries) {
@@ -54,6 +64,8 @@ export function initReveal(root) {
 }
 
 /**
+ * Subtle vertical shift for `.hero__parallax-inner` layers on scroll; throttled with `requestAnimationFrame`.
+ * No effect if those elements are absent (e.g. on routes that omit the old hero layout).
  * @param {Element | Document} root
  */
 export function initParallax(root) {
@@ -73,6 +85,7 @@ export function initParallax(root) {
 
   const onScroll = () => {
     if (parallaxFrame !== null) return;
+    // Coalesce many scroll events into one transform update per frame (smoother, less main-thread work).
     parallaxFrame = window.requestAnimationFrame(() => {
       parallaxFrame = null;
       const y = window.scrollY || document.documentElement.scrollTop;
@@ -94,7 +107,7 @@ export function initParallax(root) {
 let footerRevealObserver = null;
 
 /**
- * Footer is outside #app — observe once for scroll-in class.
+ * Footer lives in `index.html` outside `#app`, so it is not re-created on route changes—observe it once globally.
  */
 export function initFooterRevealOnce() {
   if (footerRevealObserver) return;
@@ -124,6 +137,7 @@ export function initFooterRevealOnce() {
 }
 
 /**
+ * Called on first load and after each `routechange`; pass `#app` to limit queries to freshly injected markup.
  * @param {Element | Document} [root]
  */
 export function setupScrollEffects(root = document) {

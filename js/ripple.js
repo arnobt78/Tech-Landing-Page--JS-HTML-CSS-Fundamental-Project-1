@@ -1,6 +1,7 @@
 /**
- * Material-style ripple on click for `.btn-ripple` (event delegation).
- * @see docs/RIPPLE_BUTTON_EFFECT.md
+ * Material-style ripple on click for `.btn-ripple` using **event delegation** on `document`.
+ * Works for buttons/links injected later by the router—no per-element listeners required.
+ * Shine/gloss on gradient CTAs is separate (CSS on `.cta-shine-wrap`); see docs/RIPPLE_BUTTON_EFFECT.md.
  */
 export function initRipple() {
   document.addEventListener(
@@ -16,6 +17,7 @@ export function initRipple() {
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduce) return;
 
+      // Click coordinates relative to the button box so the ripple originates under the cursor.
       const rect = el.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;

@@ -1,3 +1,12 @@
+/*
+ * TechNEXT — global stylesheet
+ * ---------------------------
+ * - Design tokens live in :root (colors, radii, fonts, breakpoints as custom properties).
+ * - Layout: utility helpers (.max-w-9xl, .inner-padding), then sections from navbar → SPA main content → footer.
+ * - Motion: [data-reveal] + .is-visible pairs with js/scroll-effects.js; .btn-ripple__wave pairs with js/ripple.js.
+ * - No CSS-in-JS: everything is plain CSS for beginner-friendly inspection in DevTools.
+ */
+
 :root {
   --font-display: "Sora", system-ui, sans-serif;
   --font-body: "IBM Plex Sans", system-ui, sans-serif;
@@ -88,6 +97,7 @@ h3,
   min-height: 50vh;
 }
 
+/* Scroll reveal: initial state hidden/off-screen; JS adds .is-visible when the element enters the viewport. */
 [data-reveal] {
   opacity: 0;
   --reveal-shift: 36px;
@@ -127,7 +137,7 @@ h3,
   }
 }
 
-/* Shell: navbar entrance on load */
+/* Shell: navbar entrance on load (runs once; navbar is not inside #app). */
 .navbar-shell {
   opacity: 0;
   animation: shellNavReveal 0.95s var(--ease-out-expo) 0.05s forwards;
@@ -152,7 +162,7 @@ h3,
   }
 }
 
-/* Shell: footer scroll-in */
+/* Shell: footer scroll-in — `.is-visible` toggled by IntersectionObserver in scroll-effects.js. */
 .footer-reveal {
   opacity: 0;
   transform: translate3d(0, 2.5rem, 0);
@@ -174,7 +184,7 @@ h3,
   }
 }
 
-/* Navbar */
+/* Navbar — sticky top bar shared across all SPA routes. */
 .navbar {
   background: rgba(12, 12, 15, 0.82);
   backdrop-filter: blur(12px);
@@ -381,7 +391,7 @@ h3,
   }
 }
 
-/* Hero */
+/* Hero — full-bleed and split layouts used by home /tech /products templates from router.js. */
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -588,6 +598,7 @@ h3,
   text-decoration: none;
 }
 
+/* CTA shine: wrap holds ::before (gradient fill), ::after (animated sweep), child .cta-shine-button is transparent text layer. */
 .cta-shine-wrap {
   position: relative;
   display: inline-block;
@@ -714,6 +725,7 @@ h3,
   }
 }
 
+/* Click ripple: `ripple.js` injects .btn-ripple__wave spans; overflow clips to rounded buttons. */
 .btn-ripple {
   position: relative;
   overflow: hidden;
@@ -807,7 +819,7 @@ h3,
   }
 }
 
-/* Sections */
+/* Sections — generic vertical rhythm for content bands inside #app. */
 .section {
   padding-block: clamp(4rem, 10vw, 6rem);
   background: var(--color-bg-deep);
@@ -1087,7 +1099,7 @@ h3,
   overflow: hidden;
 }
 
-/* Services */
+/* Services — “See what the hype is about” card grid with image overlays and card CTAs. */
 .services {
   background: var(--color-bg-elevated);
   display: flex;
@@ -1321,7 +1333,7 @@ h3,
   margin-inline: 0;
 }
 
-/* Tech & products */
+/* Tech & products — `/tech` and `/products` route-specific layout helpers. */
 .tech-detail code {
   background: rgba(255, 255, 255, 0.08);
   padding: 0.15rem 0.4rem;
@@ -1455,7 +1467,7 @@ h3,
   color: #ffb199;
 }
 
-/* Footer */
+/* Footer — static columns + social row; lives outside #app in index.html. */
 .footer__container {
   background-color: var(--color-bg-deep);
   padding: 5rem 0 3rem;

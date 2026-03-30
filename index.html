@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <!--
-      Site created by Brian Design on youtube @ www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A?view_as=subscriber
+      TechNEXT shell page: SEO/meta, fonts, and global CSS. Page content is not duplicated here—it is rendered by `js/router.js` into <main id="app">.
+      Original tutorial inspiration: Brian Design on YouTube (channel UCsKsymTY_4BYR-wytLjex7A).
     -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,7 +89,9 @@
   </head>
 
   <body>
+    <!-- Skip link: first focusable control for keyboard users; jumps straight to dynamic main content. -->
     <a class="skip-link" href="#app">Skip to main content</a>
+    <!-- Shell navigation: persists across SPA route changes (not inside #app). -->
     <nav class="navbar navbar-shell" aria-label="Primary">
       <div class="navbar__container max-w-9xl inner-padding">
         <a href="/" id="navbar__logo"><i class="fas fa-gem" aria-hidden="true"></i>TechNEXT</a>
@@ -116,8 +119,10 @@
       </div>
     </nav>
 
+    <!-- SPA outlet: `js/router.js` injects each “page” as innerHTML here. aria-live politely announces updates to AT. -->
     <main id="app" class="layout-main" aria-live="polite"></main>
 
+    <!-- Site footer: static shell; scroll-reveal handled once in `scroll-effects.js` (outside route swaps). -->
     <div class="footer__container footer-reveal">
       <div class="footer__links max-w-9xl inner-padding">
         <div class="footer__link--wrapper">
@@ -217,6 +222,7 @@
         </p>
       </div>
     </div>
+    <!-- ES module entry: enables `import` in `main.js` and a clear dependency graph without a bundler. -->
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

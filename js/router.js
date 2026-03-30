@@ -1,14 +1,23 @@
+/**
+ * Client-side router for the TechNEXT SPA.
+ *
+ * - Each “page” is a function that returns an HTML string; `navigate` assigns it to `#app` via innerHTML.
+ * - Same-origin links starting with `/` are intercepted so the URL bar updates with `history.pushState`.
+ * - `popstate` (back/forward) re-renders from `window.location.pathname`.
+ * - After navigation, `main.js` dispatches `routechange` so scroll/reveal logic can re-bind to new elements.
+ *
+ * This module does not call any HTTP APIs; content and image URLs are static strings / imports from `images.js`.
+ */
 import { images } from "./images.js";
 
-/**
- * Lightweight client router: History API + content swap into #app.
- */
+/** Tracks the active path for debugging or future features (e.g. active nav styling). */
 export const appContext = {
   currentRoute: "/"
 };
 
 const SITE_NAME = "TechNEXT";
 
+/** Maps routes to human-friendly `<title>` strings for the browser tab. */
 const LINKS = {
   "/": "Home — Learn modern web basics",
   "/tech": "Technology — TechNEXT",
@@ -17,6 +26,7 @@ const LINKS = {
 };
 
 /**
+ * Ensures consistent keys for `ROUTES` and history: trailing slashes are stripped except root stays `/`.
  * @param {string} pathname
  */
 function normalizePath(pathname) {
@@ -34,10 +44,11 @@ function setDocumentTitle(path) {
 }
 
 /**
- * @param {string} path
+ * Stacked gradients darken Unsplash card photos so white headline text stays readable (no extra DOM nodes).
  */
 const serviceCardBg = `linear-gradient(145deg, rgba(15, 15, 20, 0.35) 0%, rgba(15, 15, 20, 0.92) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(17, 17, 17, 0.82) 100%)`;
 
+/** Home route `/`: marketing sections from hero through CTA band. Uses `data-reveal` hooks for scroll effects. */
 function renderHome() {
   return `
     <div class="main hero-section hero-fullbleed">
@@ -190,9 +201,7 @@ function renderHome() {
   `;
 }
 
-/**
- * @param {string} path
- */
+/** Tech route `/tech`: full-bleed hero, “Under the hood” split, then two full-width banners (shared assets with home). */
 function renderTech() {
   return `
     <div class="main hero-section hero-fullbleed">
@@ -235,9 +244,7 @@ function renderTech() {
   `;
 }
 
-/**
- * @param {string} path
- */
+/** Products route `/products`: plans grid with CTA links to `/sign-up` and a closing full-width banner image. */
 function renderProducts() {
   return `
     <div class="main hero-section hero-fullbleed">
@@ -291,9 +298,7 @@ function renderProducts() {
   `;
 }
 
-/**
- * @param {string} path
- */
+/** Sign-up route `/sign-up`: demo form only—submit handler in `main.js` blocks real posts; no server API. */
 function renderSignUp() {
   return `
     <section class="section sign-up-section" aria-labelledby="signup-heading">
@@ -332,6 +337,7 @@ function renderSignUp() {
   `;
 }
 
+/** Central route table: add a new path by defining `renderX()` and registering it here. */
 const ROUTES = {
   "/": renderHome,
   "/tech": renderTech,
@@ -340,6 +346,7 @@ const ROUTES = {
 };
 
 /**
+ * Resolves a pathname to HTML; unknown paths fall back to the home view (defensive default).
  * @param {string} path
  */
 function renderRoute(path) {
@@ -350,6 +357,8 @@ function renderRoute(path) {
 }
 
 /**
+ * Programmatic navigation: mutates DOM, syncs `history.pushState`, and updates document title.
+ * Callers should dispatch `routechange` after this if other subsystems need to refresh (see `main.js`).
  * @param {HTMLElement | null} outlet
  * @param {string} path
  */
@@ -363,6 +372,7 @@ export function navigate(outlet, path) {
 }
 
 /**
+ * Initial load and browser back/forward: read `location.pathname` and paint the matching view.
  * @param {HTMLElement | null} outlet
  */
 export function renderFromLocation(outlet) {
@@ -374,6 +384,7 @@ export function renderFromLocation(outlet) {
 }
 
 /**
+ * Binds popstate + link interception. Capture phase (`true`) runs before default navigation on internal links.
  * @param {HTMLElement | null} outlet
  */
 export function initRouter(outlet) {
@@ -394,6 +405,7 @@ export function initRouter(outlet) {
       const url = new URL(anchor.href);
       if (url.origin !== window.location.origin) return;
       const rel = normalizePath(url.pathname);
+      // Allow full document navigation for unknown paths (e.g. future routes); known SPA paths stay in-app.
       if (!ROUTES[rel] && rel !== "/") return;
       event.preventDefault();
       navigate(outlet, rel);

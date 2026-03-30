@@ -1,3 +1,7 @@
+/**
+ * Production “build” for this static site: copy HTML/CSS/JS/public into `dist/` without bundling or minifying.
+ * Hosts like Vercel point their output directory at `dist` and rewrite all routes to `index.html` for SPA refresh support.
+ */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -15,6 +19,7 @@ if (!fs.existsSync(dist)) fs.mkdirSync(dist, { recursive: true });
   }
 });
 
+/** Recursive directory copy (used for `js/` and `public/` trees). */
 function copyDir(src, dest) {
   if (!fs.existsSync(src)) return;
   fs.mkdirSync(dest, { recursive: true });
