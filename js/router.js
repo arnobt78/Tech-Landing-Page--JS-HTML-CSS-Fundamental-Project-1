@@ -195,16 +195,17 @@ function renderHome() {
  */
 function renderTech() {
   return `
-    <div class="main page-hero">
-      <div class="main__container max-w-9xl inner-padding">
-        <div class="main__content" data-reveal>
+    <div class="main hero-section hero-fullbleed">
+      <div class="hero-fullbleed__bg" style="background-image: url('${images.tech.heroBg}')" aria-hidden="true"></div>
+      <div class="hero-fullbleed__overlay" aria-hidden="true"></div>
+      <div class="hero-fullbleed__content main__container max-w-9xl inner-padding">
+        <div class="main__content hero-fullbleed__copy" data-reveal data-reveal-from="bottom" data-reveal-delay="0">
           <p class="eyebrow">Tech stack</p>
           <h1>TECH SECTION</h1>
-          <p class="lede">Check out the technologies you can learn alongside this layout: semantic HTML, modern CSS, and vanilla ES modules.</p>
-          <button type="button" class="main__btn"><a href="/products">Explore products</a></button>
-        </div>
-        <div class="main__img--container" data-reveal data-reveal-delay="80">
-          <img id="main__img" src="${images.tech.hero}" alt="Code on a screen" width="520" height="400" loading="eager" />
+          <p class="lede lede--hero">Check out the technologies you can learn alongside this layout: semantic HTML, modern CSS, and vanilla ES modules.</p>
+          <div class="cta-shine-wrap cta-shine-wrap--hero">
+            <a class="main__btn cta-shine-button btn-ripple" href="/products">Explore products</a>
+          </div>
         </div>
       </div>
     </div>
@@ -223,6 +224,9 @@ function renderTech() {
         </div>
       </div>
     </section>
+    <section class="how__banner" aria-hidden="true">
+      <img src="${images.tech.banner}" alt="" width="1920" height="800" loading="lazy" />
+    </section>
   `;
 }
 
@@ -231,13 +235,14 @@ function renderTech() {
  */
 function renderProducts() {
   return `
-    <div class="main page-hero products-hero">
-      <div class="products-hero__bg" style="background-image: linear-gradient(180deg, rgba(12, 12, 15, 0.82) 0%, rgba(12, 12, 15, 0.55) 45%, rgba(12, 12, 15, 0.95) 100%), url('${images.products.hero}')" aria-hidden="true"></div>
-      <div class="main__container max-w-9xl inner-padding">
-        <div class="main__content" data-reveal>
+    <div class="main hero-section hero-fullbleed">
+      <div class="hero-fullbleed__bg" style="background-image: url('${images.products.heroBg}')" aria-hidden="true"></div>
+      <div class="hero-fullbleed__overlay" aria-hidden="true"></div>
+      <div class="hero-fullbleed__content main__container max-w-9xl inner-padding">
+        <div class="main__content hero-fullbleed__copy" data-reveal data-reveal-from="bottom" data-reveal-delay="0">
           <p class="eyebrow">Catalog</p>
           <h1>PRODUCTS</h1>
-          <p class="lede">Example product tiles for a landing page. Replace names and copy with your own project data.</p>
+          <p class="lede lede--hero">Example product tiles for a landing page. Replace names and copy with your own project data.</p>
         </div>
       </div>
     </div>
@@ -250,24 +255,33 @@ function renderProducts() {
             <h3>Starter</h3>
             <p class="product-card__price">$0</p>
             <p>Perfect for experimenting with HTML, CSS, and a few JS modules.</p>
-            <a href="/sign-up" class="button product-card__btn">Choose</a>
+            <div class="cta-shine-wrap cta-shine-wrap--product">
+              <a href="/sign-up" class="button product-card__btn cta-shine-button btn-ripple">Choose</a>
+            </div>
           </article>
           <article class="product-card product-card--featured" data-reveal data-reveal-delay="70">
             <div class="product-card__visual"><img src="${images.products.card2}" alt="" width="600" height="240" loading="lazy" /></div>
             <h3>Builder</h3>
             <p class="product-card__price">$12<span>/mo</span></p>
             <p>Add more sections, analytics, and a custom domain when you are ready.</p>
-            <a href="/sign-up" class="button product-card__btn">Choose</a>
+            <div class="cta-shine-wrap cta-shine-wrap--product">
+              <a href="/sign-up" class="button product-card__btn cta-shine-button btn-ripple">Choose</a>
+            </div>
           </article>
           <article class="product-card" data-reveal data-reveal-delay="140">
             <div class="product-card__visual"><img src="${images.products.card3}" alt="" width="600" height="240" loading="lazy" /></div>
             <h3>Team</h3>
             <p class="product-card__price">Custom</p>
             <p>Shared guidelines, components, and deploy previews for your group.</p>
-            <a href="/sign-up" class="button product-card__btn">Contact</a>
+            <div class="cta-shine-wrap cta-shine-wrap--product">
+              <a href="/sign-up" class="button product-card__btn cta-shine-button btn-ripple">Contact</a>
+            </div>
           </article>
         </div>
       </div>
+    </section>
+    <section class="how__banner" aria-hidden="true">
+      <img src="${images.products.banner}" alt="" width="1920" height="800" loading="lazy" />
     </section>
   `;
 }
@@ -306,7 +320,9 @@ function renderSignUp() {
             <span>Password</span>
             <input type="password" name="password" autocomplete="new-password" placeholder="Choose a password" />
           </label>
-          <button type="submit" class="button sign-up-form__submit">Create account</button>
+          <div class="cta-shine-wrap cta-shine-wrap--form">
+            <button type="submit" class="button sign-up-form__submit cta-shine-button btn-ripple">Create account</button>
+          </div>
         </form>
         <p class="sign-up-note" data-reveal data-reveal-delay="80">Already learning? <a href="/">Back home</a></p>
         </div>

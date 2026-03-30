@@ -256,6 +256,12 @@ h3,
   width: 100%;
 }
 
+@media screen and (min-width: 640px) {
+  .navbar__btn {
+    width: auto;
+  }
+}
+
 .button {
   display: flex;
   justify-content: center;
@@ -335,10 +341,19 @@ h3,
     padding-bottom: 2rem;
   }
 
+  .navbar__btn .cta-shine-wrap--nav {
+    width: 80%;
+    margin-inline: auto;
+  }
+
   .button {
     width: 80%;
     height: 64px;
     margin: 0 auto;
+  }
+
+  .navbar__btn .cta-shine-wrap--nav .button {
+    width: 100%;
   }
 
   #mobile-menu {
@@ -580,6 +595,22 @@ h3,
   overflow: hidden;
   border-radius: var(--radius);
   vertical-align: middle;
+  isolation: isolate;
+}
+
+/* Gradient lives on the wrapper so the animated sweep sits *above* the fill but *below* the label. */
+.cta-shine-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #ff5c5c 0%, #ff8a5c 100%);
+  pointer-events: none;
+}
+
+.cta-shine-wrap--card::before {
+  background: linear-gradient(135deg, #ff5c5c, #6c5cff);
 }
 
 .cta-shine-wrap--hero {
@@ -606,30 +637,65 @@ h3,
   border-radius: var(--radius);
 }
 
+.cta-shine-wrap--nav {
+  margin-top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 640px) {
+  .navbar__btn .cta-shine-wrap--nav .button {
+    width: auto;
+    min-width: 6.5rem;
+  }
+}
+
+.cta-shine-wrap--product {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.cta-shine-wrap--product .button {
+  margin-top: 0;
+}
+
+.cta-shine-wrap--form {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.cta-shine-wrap--form .button {
+  margin-top: 0;
+}
+
 .cta-shine-wrap::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   width: 85%;
   left: -20%;
   background: linear-gradient(
     105deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.18) 44%,
-    rgba(255, 255, 255, 0.45) 50%,
-    rgba(255, 255, 255, 0.18) 56%,
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.12) 60%,
     transparent 100%
   );
-  opacity: 0.9;
+  opacity: 0.95;
   pointer-events: none;
-  mix-blend-mode: overlay;
   animation: cta-shine 4.5s cubic-bezier(0.35, 0, 0.15, 1) infinite;
 }
 
 .cta-shine-button {
   position: relative;
-  z-index: 3;
+  z-index: 2;
+  background: transparent !important;
+  background-image: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1137,26 +1203,6 @@ h3,
   margin-bottom: 1.25rem;
 }
 
-.products-hero {
-  position: relative;
-  min-height: 52vh;
-  overflow: hidden;
-}
-
-.products-hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-size: cover;
-  background-position: center;
-}
-
-.products-hero .main__container {
-  position: relative;
-  z-index: 1;
-  min-height: 48vh;
-}
-
 .product-card__visual {
   margin: -1.75rem -1.75rem 1rem;
   border-radius: var(--radius) var(--radius) 0 0;
@@ -1299,7 +1345,6 @@ h3,
 }
 
 .product-card__btn {
-  margin-top: 0.5rem;
   width: 100%;
 }
 
@@ -1335,7 +1380,6 @@ h3,
 
 .sign-up-form__submit {
   width: 100%;
-  margin-top: 0.5rem;
 }
 
 .sign-up-note {

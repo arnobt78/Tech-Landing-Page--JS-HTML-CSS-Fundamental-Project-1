@@ -35,10 +35,14 @@ export const images = {
   },
   tech: {
     hero: unsplashPhoto("photo-1461749280684-dccba630e2f6", { w: 900, h: 700 }),
-    detail: unsplashPhoto("photo-1516321318423-f06f85e504b3", { w: 1200, h: 700 })
+    heroBg: unsplashPhoto("photo-1461749280684-dccba630e2f6", { w: 1920, h: 1080 }),
+    detail: unsplashPhoto("photo-1516321318423-f06f85e504b3", { w: 1200, h: 700 }),
+    banner: unsplashPhoto("photo-1551434678-e076c223a692", { w: 1920, h: 800 })
   },
   products: {
     hero: unsplashPhoto("photo-1498050108023-c5249f4df085", { w: 1600, h: 600 }),
+    heroBg: unsplashPhoto("photo-1498050108023-c5249f4df085", { w: 1920, h: 1080 }),
+    banner: unsplashPhoto("photo-1522071820081-009f0129c71c", { w: 1920, h: 800 }),
     card1: unsplashPhoto("photo-1551288049-bebda4e38f71", { w: 600, h: 400 }),
     card2: unsplashPhoto("photo-1551434678-e076c223a692", { w: 600, h: 400 }),
     card3: unsplashPhoto("photo-1553877522-43269d4ea984", { w: 600, h: 400 })
