@@ -32,6 +32,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -46,6 +47,7 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1,
@@ -66,20 +68,37 @@ h3,
   padding-inline: clamp(1rem, 4vw, 2rem);
 }
 
+/* Visually hidden until focus — avoids `left: -999px`, which widens the document and causes horizontal scrollbars. */
 .skip-link {
   position: absolute;
-  left: -999px;
   top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
   background: var(--color-accent);
   color: #fff;
-  padding: 0.5rem 1rem;
-  z-index: 10000;
   font-weight: 600;
+  z-index: 10000;
 }
 
 .skip-link:focus {
-  left: 1rem;
+  position: fixed;
   top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  text-decoration: none;
 }
 
 .visually-hidden {
@@ -95,6 +114,8 @@ h3,
 
 .layout-main {
   min-height: 50vh;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 /* Scroll reveal: initial state hidden/off-screen; JS adds .is-visible when the element enters the viewport. */
@@ -565,7 +586,7 @@ h3,
 
 @media screen and (min-width: 640px) {
   .main__container:not(.hero-fullbleed__content) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     justify-items: stretch;
     align-items: center;
     min-height: 90vh;
@@ -925,7 +946,7 @@ h3,
 
 @media screen and (min-width: 640px) {
   .features__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -934,6 +955,7 @@ h3,
   border: 1px solid var(--color-line);
   border-radius: var(--radius);
   padding: 0;
+  min-width: 0;
   overflow: hidden;
   transition: transform 0.3s var(--ease-out-expo), border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1091,6 +1113,7 @@ h3,
 .how__banner img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
   max-height: min(320px, 40vh);
   object-fit: cover;
@@ -1103,7 +1126,7 @@ h3,
 
 @media screen and (min-width: 640px) {
   .how__columns {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(2rem, 4vw, 3.5rem);
   }
 }
@@ -1258,7 +1281,7 @@ h3,
 
 @media screen and (min-width: 640px) {
   .tech-detail__split {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     justify-items: stretch;
     align-items: center;
     gap: clamp(2rem, 4vw, 3rem);
@@ -1266,6 +1289,7 @@ h3,
 }
 
 .tech-detail__visual {
+  min-width: 0;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--color-line);
@@ -1278,6 +1302,10 @@ h3,
   height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+}
+
+.tech-detail__copy {
+  min-width: 0;
 }
 
 .tech-detail__copy .section__title {
@@ -1438,7 +1466,7 @@ h3,
 
 @media screen and (min-width: 640px) {
   .products__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
   }
 }
@@ -1451,6 +1479,7 @@ h3,
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  min-width: 0;
   transition: transform 0.3s var(--ease-out-expo), border-color 0.3s ease;
 }
 
